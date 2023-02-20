@@ -27,7 +27,7 @@ from django.db import models
 
 
 class Country(models.Model):
-    id = models.IntegerField(primary_key=True, auto_created=True, blank=False, null=False)
+    id = models.BigAutoField(primary_key=True, auto_created=True)
     name = models.CharField(max_length=240, unique=True, blank=False, null=False)
 
     def __str__(self):
@@ -35,9 +35,9 @@ class Country(models.Model):
 
 
 class Author(models.Model):
-    id = models.IntegerField(primary_key=True, auto_created=True, blank=False, null=False)
+    id = models.BigAutoField(primary_key=True, auto_created=True)
     name = models.CharField(max_length=240, blank=False, null=False)
-    country = models.ForeignKey(Country, on_delete=models.RESTRICT, blank=False, null=False)
+    country = models.ForeignKey(Country, on_delete=models.CASCADE, blank=False, null=False)
     dob = models.DateField(blank=False)
 
     def __str__(self):
@@ -45,7 +45,7 @@ class Author(models.Model):
 
 
 class Publishing(models.Model):
-    id = models.IntegerField(primary_key=True, auto_created=True, blank=False, null=False)
+    id = models.BigAutoField(primary_key=True, auto_created=True)
     name = models.CharField(max_length=240, blank=False, null=False)
     country = models.ForeignKey(Country, on_delete=models.RESTRICT, blank=False, null=False)
 
@@ -54,7 +54,7 @@ class Publishing(models.Model):
 
 
 class Book(models.Model):
-    id = models.IntegerField(primary_key=True, auto_created=True, blank=False, null=False)
+    id = models.BigAutoField(primary_key=True, auto_created=True)
     name = models.CharField(max_length=240, blank=False, null=False)
     description = models.CharField(max_length=500, blank=False, null=False)
     instanceCount = models.IntegerField()
